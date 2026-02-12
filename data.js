@@ -1,7 +1,7 @@
 const ddb = [
   {
     "anarana": "SAC MODE LUXE 2024",
-    "v_taloha": "95.000 Ar",
+    "v_taloha": "80.000 Ar",
     "vidy": "75.000 Ar",
     "karazana": "mode",
     "sary": "https://images.unsplash.com/photo-1584917663913-673b6f682469?w=400",
