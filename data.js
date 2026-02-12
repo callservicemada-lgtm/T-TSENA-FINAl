@@ -9,7 +9,7 @@ const ddb = [
     "tel": "0340000000"
   },
   {
-    "anarana": "LAMPE DECO MODERNE",
+    "anarana": "LAMPE amlay DECO MODERNE",
     "v_taloha": "110.000 Ar",
     "vidy": "85.000 Ar",
     "karazana": "deco",
