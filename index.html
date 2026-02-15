@@ -79,8 +79,28 @@
         }
         .cat-pill.active { background: var(--orange-neon); color: #fff; border-color: #fff; box-shadow: 0 0 15px var(--orange-neon); }
 
+        /* --- LOADING ANIMATION --- */
+        #loader {
+            display: none;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 212, 255, 0.1);
+            border-left-color: var(--orange-neon);
+            border-radius: 50%;
+            display: inline-block;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         /* --- PRODUCT FEED --- */
-        .feed { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
+        .feed { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; 
+            transition: opacity 0.5s ease;
+        }
         .card { 
             background: rgba(255,255,255,0.05); border-radius: 20px; border: 1px solid rgba(0, 212, 255, 0.2);
             overflow: hidden; animation: zoomIn 0.5s ease; backdrop-filter: blur(5px);
@@ -139,16 +159,29 @@
         </div>
     </div>
 
+    <div id="loader"><div class="spinner"></div></div>
+
     <div id="mainFeed" class="feed"></div>
 
 <script>
-    // Tsy mila fetch intsony satria efa ao anaty ddb (avy amin'ny data.js) ny entana
     function initApp() {
-        if (typeof ddb !== 'undefined') {
-            show(ddb);
-        } else {
-            document.getElementById('mainFeed').innerHTML = "Tsy hita ny rakitra data.js";
-        }
+        const feed = document.getElementById('mainFeed');
+        const loader = document.getElementById('loader');
+
+        // Asehoy aloha ilay boribory mihodina (Animation)
+        feed.style.opacity = "0";
+        loader.style.display = "block";
+
+        // Miandry kely (0.8 segondra) vao aseho ny entana
+        setTimeout(() => {
+            if (typeof ddb !== 'undefined') {
+                loader.style.display = "none";
+                show(ddb);
+                feed.style.opacity = "1";
+            } else {
+                loader.innerHTML = "<p style='color:red'>Tsy hita ny rakitra data.js</p>";
+            }
+        }, 800);
     }
 
     function show(tab) {
